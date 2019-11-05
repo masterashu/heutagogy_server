@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django import forms
 from evaluation.models import Test1, Question, Option, Lesson, Test2, PictureDescriptionPair
 from evaluation.models import NumberList, Test3
 # Register your models here.
@@ -7,6 +8,7 @@ from evaluation.models import NumberList, Test3
 # Test 1
 class OptionsInline(admin.TabularInline):
     model = Option
+    extra = 1
 
 
 @admin.register(Question)
@@ -29,10 +31,16 @@ class Test1Admin(admin.ModelAdmin):
 
 
 class Test1Inline(admin.TabularInline):
-    verbose_name_plural = "Multiple Choices Questions"
-    verbose_name = "Multiple Choices Question"
+    verbose_name_plural = "Multiple Choices Tests"
+    verbose_name = "Multiple Choices Test"
     model = Test1
     extra = 1
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading',]
+        else:
+            return []
 
 
 # Test 2
@@ -67,6 +75,12 @@ class Test3Inline(admin.TabularInline):
     model = Test3
     extra = 1
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading',]
+        else:
+            return []
+
 
 class Test2Inline(admin.TabularInline):
     verbose_name_plural = "Picture Description Pairs"
@@ -74,9 +88,24 @@ class Test2Inline(admin.TabularInline):
     model = Test2
     extra = 1
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading', ]
+        else:
+            return []
+
+
+class LessonForm(forms.ModelForm):
+    study_text = forms.CharField(widget=forms.Textarea)
+
+    class Meta:
+        model = Lesson
+        fields = ['title', 'study_text']
+
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
+    form = LessonForm
     inlines = [
         Test1Inline,
         Test2Inline,

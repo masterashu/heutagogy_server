@@ -19,10 +19,10 @@ class NumberList(models.Model):
 
 class Test3(GeneralTest):
     heading = models.CharField(max_length=40, verbose_name='Heading Text(Optional)', null=True, blank=True)
-    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE)
+    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='test3')
 
     class Meta:
         verbose_name = "Number Ordering Puzzle"
 
     def __str__(self):
-        return self.name
+        return str(self.name)

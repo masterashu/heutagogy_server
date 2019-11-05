@@ -11,10 +11,10 @@ class PictureDescriptionPair(models.Model):
 class Test2(GeneralTest):
     # This is a Matching Game for pictures and Description
     heading = models.CharField(max_length=40, verbose_name='Heading Text(Optional)', null=True, blank=True)
-    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE)
+    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='test2')
 
     class Meta:
         verbose_name = "Pictures & Description Matching Game"
 
     def __str__(self):
-        return self.name
+        return str(self.name)
