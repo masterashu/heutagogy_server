@@ -11,8 +11,9 @@ def validate_number_list(value):
 
 class NumberList(models.Model):
     numbers = models.CharField(max_length=100, null=False, blank=False)
-    test = models.ForeignKey('Test3', on_delete=models.CASCADE)
+    test = models.ForeignKey('Test3', on_delete=models.CASCADE, related_name='number_lists')
 
+    @property
     def get_numbers(self):
         return list(map(int, self.numbers.split()))
 
