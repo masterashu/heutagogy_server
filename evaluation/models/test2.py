@@ -5,7 +5,7 @@ from .base import GeneralTest
 class PictureDescriptionPair(models.Model):
     picture = models.ImageField()
     description = models.TextField(max_length=100, verbose_name='Image Description')
-    test = models.ForeignKey('Test2', on_delete=models.CASCADE)
+    test = models.ForeignKey('Test2', on_delete=models.CASCADE, related_name='pictures')
 
 
 class Test2(GeneralTest):
