@@ -14,6 +14,7 @@ class LessonSerializer(serializers.ModelSerializer):
         model = Lesson
         fields = [
             'title',
+            'intro_text',
             'study_text',
             'test1',
             'test2',
