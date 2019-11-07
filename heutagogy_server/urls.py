@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from evaluation.views import download_file
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('evaluation.urls')),
+    re_path(r'^media/(?P<file_name>.+)$', download_file),
 ]

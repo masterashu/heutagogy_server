@@ -3,10 +3,10 @@ from .base import GeneralTest
 
 
 class PictureDescriptionPair(models.Model):
-    picture = models.ImageField()
-    description = models.TextField(max_length=100, verbose_name='Image Description')
+    picture = models.ImageField(upload_to='picture_description_pair')
+    description = models.CharField(max_length=100, verbose_name='Image Description', unique=True)
     test = models.ForeignKey('Test2', on_delete=models.CASCADE, related_name='pictures')
-
+    
 
 class Test2(GeneralTest):
     # This is a Matching Game for pictures and Description
