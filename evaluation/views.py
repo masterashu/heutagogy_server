@@ -17,6 +17,16 @@ class LessonsGetView(APIView):
         return Response(serializer.data)
 
 
+class LessonDetailView(APIView):
+    def get(self, request, id):
+        try:
+            lessons = Lesson.objects.get(pk=id)
+        except Lesson.DoesNotExist:
+            return Response(status=404)
+        serializer = LessonSerializer(lessons, context={'request': request})
+        return Response(serializer.data)
+
+
 def download_file(request, file_name):
     file_path = settings.MEDIA_ROOT +'/'+ file_name
     file_wrapper = FileWrapper(open(file_path, 'rb'))
