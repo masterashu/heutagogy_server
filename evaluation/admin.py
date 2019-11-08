@@ -100,7 +100,7 @@ class LessonForm(forms.ModelForm):
 
     class Meta:
         model = Lesson
-        fields = ['title', 'study_text']
+        fields = ['title', 'intro_text', 'study_text']
 
 
 @admin.register(Lesson)
