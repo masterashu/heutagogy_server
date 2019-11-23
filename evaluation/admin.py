@@ -2,6 +2,7 @@ from django.contrib import admin
 from django import forms
 from evaluation.models import Test1, Question, Option, Lesson, Test2, PictureDescriptionPair
 from evaluation.models import NumberList, Test3
+from evaluation.models import Test5, ImageQuestion, ImageOption
 # Register your models here.
 
 
@@ -61,6 +62,43 @@ class NumberListInline(admin.TabularInline):
     extra = 1
     verbose_name_plural = "Numbers List (space separated, max. 5 recommended)"
 
+# Test 5
+class ImageOptionsInline(admin.TabularInline):
+    model = ImageOption
+    extra = 1
+
+
+@admin.register(ImageQuestion)
+class ImageQuestionAdmin(admin.ModelAdmin):
+    inlines = [
+        ImageOptionsInline,
+    ]
+
+
+class ImageQuestionInline(admin.TabularInline):
+    model = ImageQuestion
+    extra = 1
+
+
+@admin.register(Test5)
+class Test5Admin(admin.ModelAdmin):
+    inlines = [
+        ImageQuestionInline
+    ]
+
+
+class Test5Inline(admin.TabularInline):
+    verbose_name_plural = "Multiple Choices Tests with Image"
+    verbose_name = "Multiple Choices Test with Image"
+    model = Test5
+    extra = 1
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading',]
+        else:
+            return []
+
 
 @admin.register(Test3)
 class Test3Admin(admin.ModelAdmin):
@@ -111,3 +149,4 @@ class LessonAdmin(admin.ModelAdmin):
         Test2Inline,
         Test3Inline
     ]
+

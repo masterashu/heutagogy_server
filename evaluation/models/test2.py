@@ -4,7 +4,7 @@ from .base import GeneralTest
 
 class PictureDescriptionPair(models.Model):
     picture = models.ImageField(upload_to='picture_description_pair')
-    description = models.CharField(max_length=100, verbose_name='Image Description', unique=True)
+    description = models.CharField(max_length=100, verbose_name='Image Description')
     test = models.ForeignKey('Test2', on_delete=models.CASCADE, related_name='pictures')
     
 

@@ -9,11 +9,17 @@ class OptionSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField('get_image')
     options = OptionSerializer(many=True)
 
     class Meta:
         model = Question
         fields = ['text', 'options']
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        url = obj.image.url
+        return request.build_absolute_uri(url)
 
 
 class Test1Serializer(serializers.ModelSerializer):
