@@ -11,13 +11,16 @@ class PictureDescriptionPairSerializer(serializers.ModelSerializer):
 
     def get_image(self, obj):
         request = self.context.get('request')
-        url = obj.picture.url
-        return request.build_absolute_uri(url)
+        if obj.picture:
+            url = obj.picture.url
+            return request.build_absolute_uri(url)
+        else:
+            return None
 
 
 class Test2Serializer(serializers.ModelSerializer):
     pictures = PictureDescriptionPairSerializer(many=True)
-    
+
     class Meta:
         model = Test2
         fields = ['name', 'heading', 'pictures', ]

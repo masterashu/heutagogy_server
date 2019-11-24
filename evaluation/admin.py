@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django import forms
 from evaluation.models import Test1, Question, Option, Lesson, Test2, PictureDescriptionPair
-from evaluation.models import NumberList, Test3
+from evaluation.models import NumberList, Test3, Test4, AudioDescriptionPair
 from evaluation.models import Test5, ImageQuestion, ImageOption
-# Register your models here.
 
 
-# Test 1
+# Test 1 --------------------------------------------------------------
+
 class OptionsInline(admin.TabularInline):
     model = Option
     extra = 1
@@ -31,20 +31,8 @@ class Test1Admin(admin.ModelAdmin):
     ]
 
 
-class Test1Inline(admin.TabularInline):
-    verbose_name_plural = "Multiple Choices Tests"
-    verbose_name = "Multiple Choices Test"
-    model = Test1
-    extra = 1
+# Test 2 --------------------------------------------------------------
 
-    def get_readonly_fields(self, request, obj=None):
-        if obj is not None:
-            return ['name', 'heading',]
-        else:
-            return []
-
-
-# Test 2
 class PicturePairInline(admin.TabularInline):
     model = PictureDescriptionPair
     extra = 1
@@ -56,13 +44,38 @@ class Test2Admin(admin.ModelAdmin):
         PicturePairInline,
     ]
 
+# Test 3 --------------------------------------------------------------
+
 
 class NumberListInline(admin.TabularInline):
     model = NumberList
     extra = 1
     verbose_name_plural = "Numbers List (space separated, max. 5 recommended)"
 
-# Test 5
+
+@admin.register(Test3)
+class Test3Admin(admin.ModelAdmin):
+    inlines = [
+        NumberListInline,
+    ]
+
+
+# Test 4 --------------------------------------------------------------
+
+class AudioPairInline(admin.TabularInline):
+    model = AudioDescriptionPair
+    extra = 1
+
+
+@admin.register(Test4)
+class Test4Admin(admin.ModelAdmin):
+    inlines = [
+        AudioPairInline,
+    ]
+
+
+# Test 5 --------------------------------------------------------------
+
 class ImageOptionsInline(admin.TabularInline):
     model = ImageOption
     extra = 1
@@ -87,6 +100,8 @@ class Test5Admin(admin.ModelAdmin):
     ]
 
 
+# Inlines ---------------------------------------------
+
 class Test5Inline(admin.TabularInline):
     verbose_name_plural = "Multiple Choices Tests with Image"
     verbose_name = "Multiple Choices Test with Image"
@@ -95,16 +110,22 @@ class Test5Inline(admin.TabularInline):
 
     def get_readonly_fields(self, request, obj=None):
         if obj is not None:
-            return ['name', 'heading',]
+            return ['name', 'heading', ]
         else:
             return []
 
 
-@admin.register(Test3)
-class Test3Admin(admin.ModelAdmin):
-    inlines = [
-        NumberListInline,
-    ]
+class Test4Inline(admin.TabularInline):
+    verbose_name_plural = "Audio Description Pairs"
+    verbose_name = "Audio Description Match"
+    model = Test4
+    extra = 1
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading', ]
+        else:
+            return []
 
 
 class Test3Inline(admin.TabularInline):
@@ -115,7 +136,7 @@ class Test3Inline(admin.TabularInline):
 
     def get_readonly_fields(self, request, obj=None):
         if obj is not None:
-            return ['name', 'heading',]
+            return ['name', 'heading', ]
         else:
             return []
 
@@ -124,6 +145,19 @@ class Test2Inline(admin.TabularInline):
     verbose_name_plural = "Picture Description Pairs"
     verbose_name = "Picture Description Match"
     model = Test2
+    extra = 1
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading', ]
+        else:
+            return []
+
+
+class Test1Inline(admin.TabularInline):
+    verbose_name_plural = "Multiple Choices Tests"
+    verbose_name = "Multiple Choices Test"
+    model = Test1
     extra = 1
 
     def get_readonly_fields(self, request, obj=None):
@@ -147,6 +181,7 @@ class LessonAdmin(admin.ModelAdmin):
     inlines = [
         Test1Inline,
         Test2Inline,
-        Test3Inline
+        Test3Inline,
+        Test4Inline,
+        Test5Inline,
     ]
-

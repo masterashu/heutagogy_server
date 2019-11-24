@@ -14,12 +14,15 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['text', 'options']
+        fields = ['image', 'text', 'options']
 
     def get_image(self, obj):
         request = self.context.get('request')
-        url = obj.image.url
-        return request.build_absolute_uri(url)
+        if obj.image:
+            url = obj.image.url
+            return request.build_absolute_uri(url)
+        else:
+            return None
 
 
 class Test1Serializer(serializers.ModelSerializer):
@@ -28,4 +31,3 @@ class Test1Serializer(serializers.ModelSerializer):
     class Meta:
         model = Test1
         fields = ['name', 'heading', 'questions', ]
-

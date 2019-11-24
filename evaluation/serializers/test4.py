@@ -15,9 +15,9 @@ class AudioDescriptionPairSerializer(serializers.ModelSerializer):
         return request.build_absolute_uri(url)
 
 
-class Test2Serializer(serializers.ModelSerializer):
+class Test4Serializer(serializers.ModelSerializer):
     pictures = AudioDescriptionPairSerializer(many=True)
-    
+
     class Meta:
         model = Test4
         fields = ['name', 'heading', 'pictures', ]
