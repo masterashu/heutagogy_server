@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from evaluation.models import Test1, Question, Option, Lesson, Test2, PictureDescriptionPair
 from evaluation.models import NumberList, Test3, Test4, AudioDescriptionPair
-from evaluation.models import Test5, ImageQuestion, ImageOption
+from evaluation.models import Test5, ImageQuestion, ImageOption, Test6, PictureTextInput
 
 
 # Test 1 --------------------------------------------------------------
@@ -100,7 +100,35 @@ class Test5Admin(admin.ModelAdmin):
     ]
 
 
+# Test 2 --------------------------------------------------------------
+
+class PictureTextInputPair(admin.TabularInline):
+    model = PictureTextInput
+    extra = 1
+
+
+@admin.register(Test6)
+class Test6Admin(admin.ModelAdmin):
+    inlines = [
+        PictureTextInputPair,
+    ]
+
+
 # Inlines ---------------------------------------------
+
+
+class Test6Inline(admin.TabularInline):
+    verbose_name_plural = "Picture Text Input Pairs"
+    verbose_name = "Picture  Text Input"
+    model = Test6
+    extra = 1
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading', ]
+        else:
+            return []
+
 
 class Test5Inline(admin.TabularInline):
     verbose_name_plural = "Multiple Choices Tests with Image"
