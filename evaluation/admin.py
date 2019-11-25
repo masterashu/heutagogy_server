@@ -212,4 +212,5 @@ class LessonAdmin(admin.ModelAdmin):
         Test3Inline,
         Test4Inline,
         Test5Inline,
+        Test6Inline,
     ]
