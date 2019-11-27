@@ -3,7 +3,7 @@ from evaluation.models import Test4, AudioDescriptionPair
 
 
 class AudioDescriptionPairSerializer(serializers.ModelSerializer):
-    picture = serializers.SerializerMethodField('get_image')
+    audio = serializers.SerializerMethodField('get_image')
 
     class Meta:
         model = AudioDescriptionPair
@@ -16,8 +16,8 @@ class AudioDescriptionPairSerializer(serializers.ModelSerializer):
 
 
 class Test4Serializer(serializers.ModelSerializer):
-    pictures = AudioDescriptionPairSerializer(many=True)
+    audios = AudioDescriptionPairSerializer(many=True)
 
     class Meta:
         model = Test4
-        fields = ['name', 'heading', 'pictures', ]
+        fields = ['name', 'heading', 'audios', ]
