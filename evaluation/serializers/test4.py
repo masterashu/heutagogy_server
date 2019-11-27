@@ -11,7 +11,7 @@ class AudioDescriptionPairSerializer(serializers.ModelSerializer):
 
     def get_image(self, obj):
         request = self.context.get('request')
-        url = obj.picture.url
+        url = obj.audio.url
         return request.build_absolute_uri(url)
 
 
