@@ -3,7 +3,7 @@ from .base import GeneralTest
 
 
 class AudioDescriptionPair(models.Model):
-    audio = models.ImageField(upload_to='audio_description_pair')
+    audio = models.FileField(upload_to='audio_description_pair')
     description = models.CharField(max_length=100, verbose_name='Audio Description')
     test = models.ForeignKey('Test4', on_delete=models.CASCADE, related_name='audios')
     
