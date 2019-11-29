@@ -4,7 +4,7 @@ from .base import GeneralTest
 
 class Option(models.Model):
     # This model Defines a Multiple Correct Options Question Choices
-    text = models.CharField(max_length=50, verbose_name='Option')
+    text = models.CharField(max_length=100, verbose_name='Option')
     correct = models.BooleanField()
     question = models.ForeignKey(
         'Question', on_delete=models.CASCADE, related_name='options')
