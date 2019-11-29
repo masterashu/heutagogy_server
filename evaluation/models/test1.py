@@ -25,7 +25,7 @@ class Question(models.Model):
         verbose_name = "Multiple Choice Question"
 
     def __str__(self):
-        return str(self.text)
+        return str(self.test.name + ' | ' + self.text)
 
 
 class Test1(GeneralTest):

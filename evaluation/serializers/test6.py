@@ -7,7 +7,7 @@ class PictureTextInputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PictureTextInput
-        fields = ['picture', 'description', ]
+        fields = ['picture', 'correct_text', ]
 
     def get_image(self, obj):
         request = self.context.get('request')
