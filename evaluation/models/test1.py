@@ -32,7 +32,7 @@ class Question(models.Model):
 class Test1(GeneralTest):
     # This model Defines a Multiple Correct Options Test
     heading = models.CharField(
-        max_length=40, verbose_name='Heading Text(Optional)', null=True, blank=True)
+        max_length=200, verbose_name='Heading Text(Optional)', null=True, blank=True)
     lesson = models.ForeignKey(
         'Lesson', on_delete=models.CASCADE, related_name='test1')
 
