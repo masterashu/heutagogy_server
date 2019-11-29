@@ -14,7 +14,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['image', 'text', 'options']
+        fields = ['image', 'text', 'options', 'youtube_video']
 
     def get_image(self, obj):
         request = self.context.get('request')

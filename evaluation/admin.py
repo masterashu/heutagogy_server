@@ -190,7 +190,7 @@ class Test1Inline(admin.TabularInline):
 
     def get_readonly_fields(self, request, obj=None):
         if obj is not None:
-            return ['name', 'heading', ]
+            return ['name', 'heading', 'youtube_video']
         else:
             return []
 

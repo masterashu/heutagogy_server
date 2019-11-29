@@ -17,6 +17,7 @@ class Question(models.Model):
     # This model Defines a Multiple Correct Options Question
     image = models.ImageField(
         upload_to="multiple_choice_question_image", null=True, blank=True)
+    youtube_video = models.CharField(max_length=200, default='', null=True, blank=True, verbose_name="Youtube Video (Will Replace Image)")
     test = models.ForeignKey(
         'Test1', on_delete=models.CASCADE, related_name='questions')
     text = models.CharField(max_length=200, verbose_name='Question')
