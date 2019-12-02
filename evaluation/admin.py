@@ -3,9 +3,10 @@ from django import forms
 from evaluation.models import Test1, Question, Option, Lesson, Test2, PictureDescriptionPair
 from evaluation.models import NumberList, Test3, Test4, AudioDescriptionPair
 from evaluation.models import Test5, ImageQuestion, ImageOption, Test6, PictureTextInput
-
+from evaluation.models import Test9, TextPair
 
 # Test 1 --------------------------------------------------------------
+
 
 class OptionsInline(admin.TabularInline):
     model = Option
@@ -114,7 +115,31 @@ class Test6Admin(admin.ModelAdmin):
     ]
 
 
-# Inlines ---------------------------------------------
+# Test 9 --------------------------------------------------------------
+
+class TextPairInline(admin.TabularInline):
+    model = TextPair
+    extra = 1
+
+@admin.register(Test9)
+class Test9Admin(admin.ModelAdmin):
+    inlines = [
+        TextPairInline,
+    ]
+
+# Inlines --------------------------------------------------------------
+
+class Test9Inline(admin.TabularInline):
+    verbose_name_plural = "Text Pairs Maching Tests"
+    verbose_name = "Text Pair Matching Test"
+    model = Test9
+    extra = 1
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None:
+            return ['name', 'heading', ]
+        else:
+            return []
 
 
 class Test6Inline(admin.TabularInline):
@@ -213,4 +238,5 @@ class LessonAdmin(admin.ModelAdmin):
         Test4Inline,
         Test5Inline,
         Test6Inline,
+        Test9Inline,
     ]
