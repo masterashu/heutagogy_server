@@ -13,7 +13,7 @@ class PictureTextInput(models.Model):
 class Test6(GeneralTest):
     # This is a Matching Game for pictures and Description
     heading = models.CharField(
-        max_length=40, verbose_name='Heading Text(Optional)', null=True, blank=True)
+        max_length=100, verbose_name='Heading Text(Optional)', null=True, blank=True)
     lesson = models.ForeignKey(
         'Lesson', on_delete=models.CASCADE, related_name='test6')
 
