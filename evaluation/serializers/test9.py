@@ -13,4 +13,4 @@ class Test9Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Test9
-        fields = ['name', 'heading', 'questions', ]
+        fields = ['name', 'heading', 'questions',  'subject']

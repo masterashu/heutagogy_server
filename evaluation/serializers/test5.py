@@ -27,5 +27,5 @@ class Test5Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Test5
-        fields = ['name', 'heading', 'questions', ]
+        fields = ['name', 'heading', 'questions', 'subject' ]
 

@@ -35,7 +35,7 @@ class Test1(GeneralTest):
         max_length=200, verbose_name='Heading Text(Optional)', null=True, blank=True)
     lesson = models.ForeignKey(
         'Lesson', on_delete=models.CASCADE, related_name='test1')
-
+    subject = models.CharField(max_length=20, default="", null=True, blank = True)
     class Meta:
         verbose_name = "Multiple Choice Test"
 

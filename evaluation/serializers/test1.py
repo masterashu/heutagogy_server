@@ -30,4 +30,4 @@ class Test1Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Test1
-        fields = ['name', 'heading', 'questions', ]
+        fields = ['name', 'heading', 'questions', 'subject' ]

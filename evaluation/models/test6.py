@@ -16,6 +16,7 @@ class Test6(GeneralTest):
         max_length=40, verbose_name='Heading Text(Optional)', null=True, blank=True)
     lesson = models.ForeignKey(
         'Lesson', on_delete=models.CASCADE, related_name='test6')
+    subject = models.CharField(max_length=20, default="", null=True, blank = True)
 
     class Meta:
         verbose_name = "Picture Text Input Puzzle"

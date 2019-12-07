@@ -23,4 +23,4 @@ class Test2Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Test2
-        fields = ['name', 'heading', 'pictures', ]
+        fields = ['name', 'heading', 'pictures', 'subject' ]

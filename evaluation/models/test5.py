@@ -28,6 +28,7 @@ class ImageQuestion(models.Model):
 class Test5(GeneralTest):
     # This model Defines a Multiple Correct Options Test
     heading = models.CharField(max_length=40, verbose_name='Heading Text(Optional)', null=True, blank=True)
+    subject = models.CharField(max_length=20, default="", null=True, blank = True)
     lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE, related_name='test5')
 
     class Meta:
