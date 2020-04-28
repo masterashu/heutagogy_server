@@ -3,15 +3,15 @@ from evaluation.models import ImageOption, ImageQuestion, Test5
 
 
 class ImageOptionSerializer(serializers.ModelSerializer):
-    audio = serializers.SerializerMethodField('get_audio')
+    image = serializers.SerializerMethodField('get_image')
 
     class Meta:
         model = ImageOption
         fields = ['image', 'text', 'correct']
 
-    def get_audio(self, obj):
+    def get_image(self, obj):
         request = self.context.get('request')
-        url = obj.audio.url
+        url = obj.image.url
         return request.build_absolute_uri(url)
 
 class ImageQuestionSerializer(serializers.ModelSerializer):
